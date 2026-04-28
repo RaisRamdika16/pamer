@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Checkout - Product Store</title>
+    <style>
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .section {
+        animation: slideIn 0.5s ease-out;
+      }
+
+      .order-item {
+        border-bottom: 1px solid rgba(168, 85, 247, 0.1);
+        padding: 16px 0;
+      }
+
+      .order-item:last-child {
+        border-bottom: none;
+      }
+
+      .payment-option {
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .payment-option input[type="radio"]:checked + .payment-content {
+        background: rgba(168, 85, 247, 0.2);
+        border-color: rgba(168, 85, 247, 0.5);
+      }
+
+      .payment-content {
+        transition: all 0.3s ease;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen"
+  >
+    <!-- Navbar -->
+    <nav class="bg-black/50 backdrop-blur-md border-b border-purple-500/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <a href="index.html" class="flex items-center gap-2">
+            <div
+              class="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center"
+            >
+              <span class="text-white font-bold">⚡</span>
+            </div>
+            <span
+              class="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
+            >
+              Store
+            </span>
+          </a>
+          <h1 class="text-white font-semibold hidden sm:block">Checkout</h1>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Left Side - Form -->
+        <div class="lg:col-span-2">
+          <!-- Shipping Information -->
+          <div
+            class="section bg-white/10 backdrop-blur-md border border-purple-500/30 rounded-lg p-6 mb-6"
+          >
+            <h2
+              class="text-2xl font-bold text-white mb-6 flex items-center gap-2"
+            >
+              <span class="text-2xl">📦</span> Shipping Information
+            </h2>
+            <form id="shippingForm" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-200 mb-1">
+                    First Name
+                  </label>
+                  <input
+                    id="firstName"
+                    type="text"
+                    placeholder="John"
+                    required
+                    class="w-full px-4 py-2 border border-purple-500/30 rounded-lg bg-white/5 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-200 mb-1">
+                    Last Name
+                  </label>
+                  <input
+                    id="lastName"
+                    type="text"
+                    placeholder="Doe"
+                    required
+                    class="w-full px-4 py-2 border border-purple-500/30 rounded-lg bg-white/5 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-200 mb-1">
+                  Email Address
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  required
+                  class="w-full px-4 py-2 border border-purple-500/30 rounded-lg bg-white/5 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-200 mb-1">
+                  Phone Number
+                </label>
+                <input
+                  id="phone"
+                  type="tel"
+                  placeholder="+62 812 3456 7890"
+                  required
+                  class="w-full px-4 py-2 border border-purple-500/30 rounded-lg bg-white/5 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-200 mb-1">
+                  Street Address
+                </label>
+                <input
+                  id="address"
+                  type="text"
+                  placeholder="123 Main Street"
+                  required
+                  class="w-full px-4 py-2 border border-purple-500/30 rounded-lg bg-white/5 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+                />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-200 mb-1">
+                    City
+                  </label>
+                  <input
+                    id="city"
+                    type="text"
+                    placeholder="Jakarta"
+                    required
+                    class="w-full px-4 py-2 border border-purple-500/30 rounded-lg bg-white/5 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-200 mb-1">
+                    Postal Code
+                  </label>
+                  <input
+                    id="postalCode"
+                    type="text"
+                    placeholder="12345"
+                    required
+                    class="w-full px-4 py-2 border border-purple-500/30 rounded-lg bg-white/5 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Shipping Method -->
+          <div
+            class="section bg-white/10 backdrop-blur-md border border-purple-500/30 rounded-lg p-6 mb-6"
+          >
+            <h2
+              class="text-2xl font-bold text-white mb-6 flex items-center gap-2"
+            >
+              <span class="text-2xl">🚚</span> Shipping Method
+            </h2>
+            <div class="space-y-3">
+              <label
+                class="payment-option flex items-center p-4 border border-purple-500/30 rounded-lg hover:border-purple-500/50 bg-white/5 hover:bg-white/10 transition"
+              >
+                <input
+                  type="radio"
+                  name="shipping"
+                  value="standard"
+                  checked
+                  class="w-4 h-4 mr-3"
+                />
+                <span class="flex-1">
+                  <p class="text-white font-semibold">Standard Shipping</p>
+                  <p class="text-gray-400 text-sm">3-5 business days</p>
+                </span>
+                <span class="text-purple-400 font-bold">Free</span>
+              </label>
+              <label
+                class="payment-option flex items-center p-4 border border-purple-500/30 rounded-lg hover:border-purple-500/50 bg-white/5 hover:bg-white/10 transition"
+              >
+                <input
+                  type="radio"
+                  name="shipping"
+                  value="express"
+                  class="w-4 h-4 mr-3"
+                />
+                <span class="flex-1">
+                  <p class="text-white font-semibold">Express Shipping</p>
+                  <p class="text-gray-400 text-sm">1-2 business days</p>
+                </span>
+                <span class="text-purple-400 font-bold">$15</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Payment Method -->
+          <div
+            class="section bg-white/10 backdrop-blur-md border border-purple-500/30 rounded-lg p-6"
+          >
+            <h2
+              class="text-2xl font-bold text-white mb-6 flex items-center gap-2"
+            >
+              <span class="text-2xl">💳</span> Payment Method
+            </h2>
+            <div class="space-y-3">
+              <label
+                class="payment-option flex items-center p-4 border border-purple-500/30 rounded-lg hover:border-purple-500/50 bg-white/5 hover:bg-white/10 transition"
+              >
+                <input
+                  type="radio"
+                  name="payment"
+                  value="credit-card"
+                  checked
+                  class="w-4 h-4 mr-3"
+                />
+                <span class="flex-1">
+                  <p class="text-white font-semibold">Credit Card</p>
+                  <p class="text-gray-400 text-sm">Visa, Mastercard, Amex</p>
+                </span>
+              </label>
+              <label
+                class="payment-option flex items-center p-4 border border-purple-500/30 rounded-lg hover:border-purple-500/50 bg-white/5 hover:bg-white/10 transition"
+              >
+                <input
+                  type="radio"
+                  name="payment"
+                  value="debit-card"
+                  class="w-4 h-4 mr-3"
+                />
+                <span class="flex-1">
+                  <p class="text-white font-semibold">Debit Card</p>
+                  <p class="text-gray-400 text-sm">All banks</p>
+                </span>
+              </label>
+              <label
+                class="payment-option flex items-center p-4 border border-purple-500/30 rounded-lg hover:border-purple-500/50 bg-white/5 hover:bg-white/10 transition"
+              >
+                <input
+                  type="radio"
+                  name="payment"
+                  value="e-wallet"
+                  class="w-4 h-4 mr-3"
+                />
+                <span class="flex-1">
+                  <p class="text-white font-semibold">E-Wallet</p>
+                  <p class="text-gray-400 text-sm">GCash, PayPal, etc</p>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side - Order Summary -->
+        <div class="lg:col-span-1">
+          <div
+            class="section bg-white/10 backdrop-blur-md border border-purple-500/30 rounded-lg p-6 sticky top-8"
+          >
+            <h2
+              class="text-2xl font-bold text-white mb-6 flex items-center gap-2"
+            >
+              <span class="text-2xl">📋</span> Order Summary
+            </h2>
+
+            <!-- Items List -->
+            <div id="orderItems" class="mb-6">
+              <!-- Cart items will be inserted here -->
+            </div>
+
+            <!-- Divider -->
+            <div class="border-t border-purple-500/20 my-6"></div>
+
+            <!-- Calculations -->
+            <div class="space-y-3 mb-6">
+              <div class="flex justify-between text-gray-300">
+                <span>Subtotal</span>
+                <span id="subtotal">$0.00</span>
+              </div>
+              <div class="flex justify-between text-gray-300">
+                <span>Shipping</span>
+                <span id="shippingCost">Free</span>
+              </div>
+              <div class="flex justify-between text-gray-300">
+                <span>Tax (10%)</span>
+                <span id="tax">$0.00</span>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="border-t border-purple-500/20 mb-6"></div>
+
+            <!-- Total -->
+            <div class="flex justify-between items-center mb-6">
+              <span class="text-xl font-bold text-white">Total</span>
+              <span
+                id="total"
+                class="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
+              >
+                $0.00
+              </span>
+            </div>
+
+            <!-- Place Order Button -->
+            <button
+              onclick="placeOrder()"
+              class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition duration-200 shadow-lg mb-3"
+            >
+              Place Order 🛍️
+            </button>
+
+            <!-- Continue Shopping Button -->
+            <a
+              href="index.html"
+              class="block w-full text-center bg-white/10 hover:bg-white/20 text-white font-semibold py-2 rounded-lg transition duration-200 border border-purple-500/30"
+            >
+              Continue Shopping
+            </a>
+
+            <!-- Promo Code -->
+            <div class="mt-6 pt-6 border-t border-purple-500/20">
+              <p class="text-sm text-gray-400 mb-2">Have a promo code?</p>
+              <div class="flex gap-2">
+                <input
+                  id="promoCode"
+                  type="text"
+                  placeholder="Enter code"
+                  class="flex-1 px-3 py-2 border border-purple-500/30 rounded bg-white/5 text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                />
+                <button
+                  onclick="applyPromo()"
+                  class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold rounded transition"
+                >
+                  Apply
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div
+      id="successModal"
+      class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden"
+    >
+      <div
+        class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-lg p-8 max-w-md w-full mx-4 border border-green-500/30"
+      >
+        <div class="text-center">
+          <div class="text-6xl mb-4">✅</div>
+          <h2 class="text-2xl font-bold text-white mb-2">
+            Order Placed Successfully!
+          </h2>
+          <p class="text-gray-300 mb-2">Thank you for your purchase! 🎉</p>
+          <p id="orderNumber" class="text-purple-400 font-semibold mb-6"></p>
+          <button
+            onclick="goToDashboard()"
+            class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 rounded-lg transition"
+          >
+            Back to Shopping
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/checkout.js"></script>
+  </body>
+</html>
