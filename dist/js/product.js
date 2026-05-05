@@ -162,13 +162,13 @@ function loadProduct() {
     const heartIcon = inWishlist ? "❤️" : "🤍";
 
     hasil += `
-    <div class="product-card bg-white/10 backdrop-blur-md border border-purple-500/20 rounded-lg overflow-hidden hover:border-purple-500/50 group relative">
+    <div class="product-card bg-white/10 backdrop-blur-md border border-purple-500/20 rounded-lg overflow-hidden hover:border-purple-500/50 group relative cursor-pointer" onclick="showProductDescription(${product.id})">
       <!-- Image Container -->
       <div class="relative h-48 bg-gradient-to-br from-purple-500/10 to-pink-500/10 flex items-center justify-center overflow-hidden">
         <img src="${product.image}" alt="${product.title}" class="h-40 w-40 object-contain group-hover:scale-110 transition duration-300">
         
         <!-- Wishlist Button -->
-        <button onclick="addToWishlist(${product.id})" class="absolute top-2 right-2 text-2xl hover:scale-125 transition duration-200 bg-black/30 backdrop-blur-md p-2 rounded-full hover:bg-black/50">
+        <button onclick="event.stopPropagation(); addToWishlist(${product.id})" class="absolute top-2 right-2 text-2xl hover:scale-125 transition duration-200 bg-black/30 backdrop-blur-md p-2 rounded-full hover:bg-black/50">
           ${heartIcon}
         </button>
       </div>
@@ -189,7 +189,7 @@ function loadProduct() {
           </div>
         </div>
         
-        <button onclick="addToCart(${product.id})" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-2 rounded-lg transition duration-200 flex items-center justify-center gap-2">
+        <button onclick="event.stopPropagation(); addToCart(${product.id})" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-2 rounded-lg transition duration-200 flex items-center justify-center gap-2">
           <span>🛒</span> Add to Cart
         </button>
       </div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./dist/style.css" />
     <title>Product Store</title>
     <style>
       @keyframes fadeIn {
@@ -234,14 +234,18 @@
       </div>
     </footer>
 
-    <script src="js/session.js"></script>
-    <script src="js/product.js"></script>
-    <script src="js/wislit.js"></script>
+    <script src="./dist/js/session.js"></script>
+    <script src="./dist/js/product.js"></script>
+    <script src="./dist/js/wishlist.js"></script>
+    <script src="./dist/js/description.js"></script>
     <script>
       const name = sessionStorage.getItem("name");
       if (name) {
         document.getElementById("user-name").textContent = name;
       }
+      // Load products when page loads
+      fetchProducts();
+      updateCartCount();
     </script>
   </body>
 </html>

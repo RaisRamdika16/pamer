@@ -1,8 +1,18 @@
 let user = [];
 
+function getAuthBasePath() {
+  const script = document.currentScript;
+  if (!script) {
+    return "";
+  }
+  const src = script.src;
+  return src.replace(/\/js\/auth\.js$/, "");
+}
+
 async function MemuatUser() {
   try {
-    const response = await fetch("js/user.json");
+    const basePath = getAuthBasePath();
+    const response = await fetch(`${basePath}/js/user.json`);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
