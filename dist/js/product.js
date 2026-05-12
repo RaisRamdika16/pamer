@@ -7,6 +7,7 @@ async function fetchProducts() {
     products = await response.json();
     window.products = products; // Make it global for wishlist
     loadProduct();
+    initializeCategories(); // Initialize category filter after loading products
   } catch (error) {
     console.error("ERROR saat memuat data produk:", error);
   }
@@ -148,10 +149,7 @@ function removeFromCart(index) {
 }
 
 function checkout() {
-  alert("Thanks for your purchase! ✨");
-  localStorage.removeItem("cart");
-  updateCartCount();
-  closeCart();
+  openCheckout();
 }
 
 function loadProduct() {
